@@ -6,6 +6,7 @@ const list = document.querySelector("#notes-list");
 const count = document.querySelector("#note-count");
 const errorMessage = document.querySelector("#error-message");
 const searchInput = document.querySelector("#search-input");
+const clearAllBtn = document.querySelector("#clear-all-btn");
 
 const MAX_CHARS = 200;
 const STORAGE_KEY = "quicknotes";
@@ -80,6 +81,8 @@ function render() {
     list.appendChild(empty);
   }
 
+  clearAllBtn.hidden = notes.length === 0; // nothing to clear
+
   // Count message: none, one, many
   if (notes.length === 0) {
     count.textContent = "You have no notes yet.";
@@ -133,6 +136,14 @@ form.addEventListener("submit", (event) => {
 });
 
 searchInput.addEventListener("input", render);
+
+clearAllBtn.addEventListener("click", () => {
+  if (confirm("Delete all notes?")) {
+    notes = [];
+    saveNotes();
+    render();
+  }
+});
 
 // ---------- 6. Draw once when the page first loads ----------
 render();

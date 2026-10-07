@@ -112,8 +112,16 @@ button:hover {
 }
 
 /* ---- Notes list and cards ---- */
-#note-count {
+.list-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
   margin: 1rem 0 0.5rem;
+}
+
+#note-count {
+  margin: 0;
   color: #555555;
 }
 
